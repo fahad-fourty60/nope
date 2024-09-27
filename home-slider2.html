@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <style>
+        * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat";
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+.com {
+  display: flex;
+  align-items: stretch;
+  height: 100vh;
+  overflow: hidden;
+}
+.com__content {
+  position: relative;
+  flex: 8;
+  background: #404855;
+  padding: 10vh 10vw;
+}
+.com__section {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 10%;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.com__section.active {
+  opacity: 1;
+  visibility: visible;
+}
+.com__section-half {
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+.com__section--text h1 {
+  margin-bottom: 3vh;
+  font-size: 48px;
+  font-weight: 300;
+  color: #22E2ED;
+}
+.com__section--text p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  font-size: 20px;
+}
+.com__section--text img {
+  max-width: 250px;
+  margin: 0 auto;
+}
+.com__section--text.centered {
+  text-align: center;
+}
+.com__section--text-img {
+  display: flex;
+  flex-flow: row wrap;
+}
+.com__nav {
+  width: 90px;
+}
+.com__nav-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-flow: column wrap;
+  height: 100vh;
+  overflow: visible;
+}
+.com__nav-item {
+  flex: 1;
+  position: relative;
+  overflow: visible;
+  border-bottom: 7px solid #1BAFB9;
+  background: #22E2ED;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.com__nav-item.active {
+  background: #20232a;
+}
+.com__nav-item:last-child {
+  border-bottom: none;
+}
+.com__nav-item:hover {
+  flex: 2;
+}
+.com__nav-item:hover .com__nav-link {
+  transform: scaleX(1);
+}
+.com__nav-item:hover .blue-line,
+.com__nav-item:hover .white-line,
+.com__nav-item:hover .white-circle {
+  transform: none;
+  opacity: 1;
+}
+.com__nav-link {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  padding: 0 20%;
+  position: absolute;
+  width: 280%;
+  height: 100%;
+  left: calc(-280% + 90px);
+  background: rgba(32, 35, 42, 0.75);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.com__nav-link.flex-row {
+  flex-flow: row wrap;
+}
+.com__nav-link.centered {
+  align-items: center;
+}
+.com__nav-link .com__section-half {
+  height: auto;
+}
+.com__nav-link .com__section-half:nth-child(2) {
+  align-items: center;
+}
+
+.blue-line {
+  display: block;
+  width: 80%;
+  height: 14px;
+  background: #22E2ED;
+  margin-bottom: 12px;
+}
+
+.white-line {
+  display: block;
+  width: 60%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.9);
+  margin-bottom: 7px;
+}
+.white-line:nth-of-type(3) {
+  width: 50%;
+}
+
+.white-circle {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* animation classes */
+.animate {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.slideInLeft {
+  transform: translate3d(-100%, 0, 0);
+  opacity: 0;
+}
+
+.slideInRight {
+  transform: translate3d(100%, 0, 0);
+  opacity: 0;
+}
+
+.scaleIn {
+  transform: scale(0);
+}
+
+.scaleInLeft {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.delay-1 {
+  transition-delay: 0.05s;
+}
+
+.delay-2 {
+  transition-delay: 0.1s;
+}
+
+.delay-3 {
+  transition-delay: 0.15s;
+}
+
+.delay-4 {
+  transition-delay: 0.2s;
+}
+
+.delay-5 {
+  transition-delay: 0.25s;
+}
+
+.logo {
+  position: fixed;
+  bottom: 3vh;
+  left: 3vw;
+  z-index: 2;
+}
+.logo img {
+  width: 45px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: rotate(0);
+}
+.logo img:hover {
+  transform: rotate(180deg) scale(1.1);
+}
+    </style>
+</head>
+<body>
+    <div class="com">
+        <div class="com__content">
+            <section class="com__section com__section--text">
+                <h1 class="animate slideInLeft ">Communication Design</h1>
+                <p class="animate slideInLeft delay-3">Communication design is a mixed discipline between design and information-development which is concerned with how media intermission such as printed, crafted, electronic media or presentations communicate with people.</p>
+            </section>
+            <section class="com__section com__section--text com__section--text-img">
+                <div class="com__section-half">
+                    <h1 class="animate slideInLeft">Communication Design</h1>
+                    <p class="animate slideInLeft delay-2">Communication design is a mixed discipline between design and information-development which is concerned with how media intermission such as printed, crafted, electronic media or presentations communicate with people.</p>
+                </div>
+                <div class="com__section-half">
+                    <img class="animate slideInRight delay-3" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/45226/ettrics-logo.svg" alt="" />
+                </div>
+            </section>
+            <section class="com__section com__section--text centered">
+                <h1 class="animate scaleIn">Communication Design</h1>
+                <img class="animate scaleIn delay-3" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/45226/ettrics-logo.svg" alt="" />
+            </section>
+            <section class="com__section com__section--text">
+                <h1 class="animate slideInLeft ">Communication Design</h1>
+                <p class="animate slideInLeft delay-3">Communication design is a mixed discipline between design and information-development which is concerned with how media intermission such as printed, crafted, electronic media or presentations communicate with people.</p>
+            </section>
+            <section class="com__section com__section--text com__section--text-img">
+                <div class="com__section-half">
+                    <h1 class="animate slideInLeft">Communication Design</h1>
+                    <p class="animate slideInLeft delay-2">Communication design is a mixed discipline between design and information-development which is concerned with how media intermission such as printed, crafted, electronic media or presentations communicate with people.</p>
+                </div>
+                <div class="com__section-half">
+                    <img class="animate slideInRight delay-3" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/45226/ettrics-logo.svg" alt="" />
+                </div>
+            </section>
+            <section class="com__section com__section--text centered">
+                <h1 class="animate scaleIn">Communication Design</h1>
+                <img class="animate scaleIn delay-3" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/45226/ettrics-logo.svg" alt="" />
+            </section>
+            <section class="com__section com__section--text">
+                <h1 class="animate slideInLeft ">Communication Design</h1>
+                <p class="animate slideInLeft delay-3">Communication design is a mixed discipline between design and information-development which is concerned with how media intermission such as printed, crafted, electronic media or presentations communicate with people.</p>
+            </section>
+        </div>
+        <nav class="com__nav">
+            <ul class="com__nav-list">
+                <li class="com__nav-item">
+                    <a href="" class="com__nav-link">
+                        <span class="blue-line animate scaleInLeft delay-2"></span>
+                        <span class="white-line animate scaleInLeft delay-4"></span>
+                        <span class="white-line animate scaleInLeft delay-5"></span>
+                    </a>
+                </li>
+                <li class="com__nav-item">
+                    <a href="" class="com__nav-link flex-row">
+                        <div class="com__section-half">
+                            <span class="blue-line animate scaleInLeft delay-3"></span>
+                            <span class="white-line animate scaleInLeft delay-4"></span>
+                        </div>
+                        <div class="com__section-half">
+                            <span class="white-circle animate slideInRight delay-5"></span>
+                        </div>
+                    </a>
+                </li>
+                <li class="com__nav-item">
+                    <a href="" class="com__nav-link centered">
+                        <span class="blue-line animate scaleIn delay-3"></span>
+                        <span class="white-circle animate scaleIn delay-5"></span>
+                    </a>
+                </li>
+                <li class="com__nav-item">
+                    <a href="" class="com__nav-link">
+                        <span class="blue-line animate scaleInLeft delay-2"></span>
+                        <span class="white-line animate scaleInLeft delay-4"></span>
+                        <span class="white-line animate scaleInLeft delay-5"></span>
+                    </a>
+                </li>
+                <li class="com__nav-item">
+                    <a href="" class="com__nav-link flex-row">
+                        <div class="com__section-half">
+                            <span class="blue-line animate scaleInLeft delay-3"></span>
+                            <span class="white-line animate scaleInLeft delay-4"></span>
+                        </div>
+                        <div class="com__section-half">
+                            <span class="white-circle animate slideInRight delay-5"></span>
+                        </div>
+                    </a>
+                </li>
+                <li class="com__nav-item">
+                    <a href="" class="com__nav-link centered">
+                        <span class="blue-line animate scaleIn delay-3"></span>
+                        <span class="white-circle animate scaleIn delay-5"></span>
+                    </a>
+                </li>
+                <li class="com__nav-item">
+                    <a href="" class="com__nav-link">
+                        <span class="blue-line animate scaleInLeft delay-2"></span>
+                        <span class="white-line animate scaleInLeft delay-4"></span>
+                        <span class="white-line animate scaleInLeft delay-5"></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    
+    <a href="http://ettrics.com/code/material-design-slider-animation/" class="logo" target="_blank">
+     <img class="logo" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/45226/ettrics-logo.svg" alt="" /> 
+    </a>
+    
+    <script>
+        var link = $('.com__nav-link');
+var linkParent = link.parent('li');
+var section = $('.com__section');
+var sectionContent = section.find('*');
+
+var switchTab = function() {
+	var p = $(this).parent('li');
+	var i  = p.index();
+	var s = section.eq(i);
+	var c = s.find('*');
+	
+	section.removeClass('active');
+	sectionContent.removeAttr('style');
+	s.addClass('active');
+	
+	c.css({
+		transform: 'none',
+		opacity: 1
+	});
+	
+	linkParent.removeClass('active');
+	p.addClass('active');
+	
+	return false;
+};
+
+link.on('click', switchTab);
+
+function activeFirst() {
+	section.first().addClass('active');
+	section.first().find('*').css({
+		transform: 'none',
+		opacity: 1
+	});
+	linkParent.first().addClass('active');
+}
+
+activeFirst();
+    </script>
+
+
+<!-- https://codepen.io/ettrics/pen/WvoRQo/ -->
+</body>
+</html>

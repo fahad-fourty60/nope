@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <style>
+        /***************************
+    CUSTOM SCROLL BAR
+****************************/
+
+        @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Nunito", sans-serif;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0px auto;
+            padding: 80px 40px;
+            overflow: hidden;
+        }
+
+        /* html {
+  background: rgb(247, 246, 246);
+} */
+        :root {
+            --primary-color: #303192;
+            --secondary-color: ;
+            --body-para-color: #1e1e1e;
+            --accent-para-color: #3a3838;
+        }
+
+        /* utlities start */
+        a {
+            text-decoration: none !important;
+        }
+
+        h1 {
+            font-size: 48px;
+            line-height: 64px;
+            font-weight: 700;
+            color: #000000;
+        }
+
+        h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            font-weight: 600;
+            line-height: 49px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 30px;
+            line-height: 40px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 16px;
+            color: var(--body-para-color);
+            line-height: 24px;
+            font-weight: 600;
+        }
+
+        a {
+            font-weight: 400;
+            font-size: 16px;
+        }
+
+        .span-22 {
+            font-size: 22px;
+            color: var(--accent-para-color);
+            font-weight: 500;
+            line-height: 30px;
+        }
+
+        .span-24 {
+            font-size: 24px;
+            color: var(--body-para-color);
+        }
+
+        .span-28 {
+            font-size: 28px;
+            color: var(--accent-para-color);
+            font-weight: 500;
+            line-height: 28px;
+        }
+
+        .primary-btn {
+            background: var(--primary-color);
+            color: #fff;
+            border-radius: 50px;
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: 500;
+            text-align: center;
+            line-height: 24px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .secondary-btn {
+            background: #fff;
+            color: var(--primary-color);
+            border-radius: 50px;
+            padding: 15px 20px;
+            border: 1px solid var(--primary-color);
+            font-size: 18px;
+            font-weight: 500;
+            text-align: center;
+            line-height: 24px;
+            /* border: 1px solid #FFF; */
+            background: #fff;
+            box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
+        /* :root {
+            --white: #FFF;
+            --black: #232323;
+            --lite: rgba(255, 255, 255, 0.6);
+            --gray: rgba(1, 1, 1, 0.6);
+            --dark: #3c3d3c;
+            --primary: linear-gradient(145deg, #ff2f09, #c24a4e);
+            --primary_dark: #970104;
+            --primary_lite: #c24a4e;
+            --secondary: #000a17;
+            --default_font: 'Ysabeau Infant', sans-serif;
+            --title_font: 'Outfit', sans-serif;
+        } */
+
+        ::-webkit-scrollbar {
+            height: 12px;
+            width: 8px;
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: gray;
+            -webkit-box-shadow: 0px 1px 2px var(--dark);
+        }
+
+        ::-webkit-scrollbar-corner {
+            background: var(--dark);
+        }
+
+
+
+        /***************************
+            DEFAULT
+****************************/
+        .home-slider {
+            margin: 0;
+            overflow-x: hidden !important;
+        }
+
+        .home-slider a {
+            text-decoration: none !important;
+            min-width: fit-content;
+            width: fit-content;
+            width: -webkit-fit-content;
+            width: -moz-fit-content;
+        }
+
+        .home-slider a,
+        button {
+            transition: 0.5s;
+        }
+
+        .home-slider a,
+        button,
+        input,
+        textarea,
+        select {
+            outline: none !important;
+        }
+
+        .home-slider fieldset {
+            border: 0;
+        }
+
+
+        .home-slider .title,
+        .sub_title {
+            font-family: var(--title_font);
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .home-slider .flex,
+        .fixed_flex {
+            display: flex;
+        }
+
+        .home-slider .flex_content {
+            width: 100%;
+            position: relative;
+        }
+
+        .home-slider .padding_1x {
+            padding: 1rem;
+        }
+
+        .home-slider .padding_2x {
+            padding: 2rem;
+        }
+
+        .home-slider .padding_3x {
+            padding: 3rem;
+        }
+
+        .home-slider .padding_4x {
+            padding: 4rem;
+        }
+
+        .home-slider .big {
+            font-size: 3.5em;
+        }
+
+        .home-slider .medium {
+            font-size: 2em;
+        }
+
+        .home-slider .small {
+            font-size: 1.3em;
+        }
+
+        .home-slider .btn {
+            padding: 1rem;
+            border-radius: 5px;
+            color: var(--white);
+            position: relative;
+            border: 0;
+            text-align: center;
+
+        }
+
+        .home-slider .btn_3 {
+            display: block;
+            background-color: 0;
+            color: var(--white);
+            position: relative;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        .home-slider .btn_3:before {
+            content: "";
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 40px;
+            height: 40px;
+            transition: 0.5s;
+            transform: translate(0%, -50%);
+        }
+
+        .home-slider .btn_3:after {
+            content: "\f178";
+            margin-left: 5px;
+        }
+
+        .home-slider .btn_3:hover:before {
+            border-radius: 40px;
+            width: 100%;
+        }
+
+        @media (max-width:920px) {
+            .home-slider .flex {
+                flex-wrap: wrap;
+            }
+
+            .home-slider .padding_1x,
+            .padding_2x,
+            .padding_3x,
+            .padding_4x {
+                padding: 1rem;
+            }
+
+            .home-slider .big {
+                font-size: 1.8em;
+            }
+
+            .home-slider .medium {
+                font-size: 1.3em;
+            }
+
+            .home-slider .small {
+                font-size: 1.1em;
+            }
+
+            .home-slider .btn {
+                padding: 0.5rem 1rem;
+            }
+
+
+        }
+
+        .home-slider .slider {
+            position: relative;
+            width: 100%;
+            /* height: 100vh; */
+            height: 900px;
+        }
+
+        .home-slider ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        .home-slider .slider .title {
+            font-weight: 400;
+        }
+
+        .home-slider .slider li {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            transition: clip .7s ease-in-out, z-index 0s .7s;
+            clip: rect(0, 100%, 100%, 100vw);
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+
+        .home-slider .slider li:nth-child(1) {
+            background: url("home.png");
+            background-size: cover;
+            /* background-position: top left; */
+            background-position: 50% 100%;
+        }
+
+        .home-slider .slider li:before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            right: 0;
+            width: 250px;
+            height: 250px;
+            background-image: url("https://i.postimg.cc/02zcww6c/slider-shape.png");
+            background-size: 100% 100%;
+            transition-delay: 1s;
+            transform: rotate(-90deg);
+            z-index: 1;
+        }
+
+        .home-slider .slider li:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background-image: url("https://i.postimg.cc/KjKbwDfR/slider-shape-2.png");
+            background-size: 100% 100%;
+            transform: rotate(360deg);
+            transition: all 1.5s cubic-bezier(0, 0, .2, 1);
+            z-index: 1;
+            /* background-position: center left; */
+            background-position: 100% 100%;
+        }
+
+        .home-slider .slider li:nth-child(2) {
+            background: url("home.png");
+            background-size: cover;
+            background-position: top left;
+            /* background-position: 100% 100%; */
+        }
+
+        .home-slider .slider li:nth-child(3) {
+            background: url("home.png");
+            background-size: cover;
+            /* background-position: top left; */
+            background-position: 100% 100%;
+        }
+
+        .home-slider .slider article {
+            width: 60%;
+            margin-top: 4rem;
+            color: #fff;
+            z-index: 11;
+        }
+
+        .home-slider .slider h1+p {
+            display: inline-block;
+            color: var();
+            font-weight: 300;
+        }
+
+        .home-slider .slider h1,
+        .slider h1+p,
+        .slider p+.btn,
+        li:after {
+            opacity: 0;
+            transition: opacity .7s 0s, transform .5s .2s;
+            transform: translate3d(0, 50%, 0);
+        }
+
+        .home-slider li.current h1,
+        li.current h1+p,
+        li.current p+.btn,
+        li.current:after {
+            opacity: 1;
+            transition-delay: 1s;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .home-slider .slider li:before {
+            transition: 0.5s;
+            top: -250px !important;
+        }
+
+        .home-slider li.current:before {
+            transition-delay: 1s;
+            transform: rotate(-90deg);
+            top: -20px !important;
+        }
+
+        .home-slider li.current {
+            z-index: 1;
+            clip: rect(0, 100%, 100%, 0);
+        }
+
+        .home-slider li.prev {
+            clip: rect(0, 0, 100%, 0);
+        }
+
+        .home-slider .slider aside {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .home-slider .slider aside a {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            min-width: 8px;
+            min-height: 8px;
+            background-color: #fff;
+            margin: 0 0.2rem;
+            transition: transform .3s;
+        }
+
+        .home-slider slider em {
+            background: var(--primary);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+        }
+
+        .home-slider a.current_dot {
+            transform: scale(1.4);
+            background: var(--primary-color) !important;
+        }
+
+        @media screen and (max-width: 920px) {
+            header {
+                /* height: 70vh; */
+                height: 900px;
+                position: relative;
+
+            }
+
+            .home-slider .cs-down {
+                display: none;
+            }
+
+            .home-slider .slider {
+                height: 900px;
+                /* height: 70vh; */
+            }
+
+            .home-slider .slider article {
+                width: 100%;
+                margin-top: 2rem;
+            }
+
+            .home-slider .slider li:nth-child(2) {
+                background-position: top center;
+            }
+
+            .home-slider .slider li:nth-child(3) {
+                background-position: top center;
+            }
+
+            .home-slider li.current:before {
+                top: -30px;
+                right: -10px;
+            }
+        }
+
+        @media screen and (max-width:768px) {
+            .home-slider .slider {
+                position: relative;
+                width: 100%;
+                /* height: 100vh; */
+                height: 600px;
+            }
+
+            .home-slider .slider li:before {
+                width: 180px;
+                height: 180px;
+            
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <!--HEADER-->
+    <header>
+        <div class="home-slider">
+            <section class="slider">
+                <ul>
+                    <li>
+                        <article class="center-y padding_2x">
+                            <h1 class="big title"><em>O</em>ccupational <em>H</em>ealth</h1>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                            <a href="#about" class="btn btn_3 primary-btn">More about us</a>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="center-y padding_2x">
+                            <h1 class="big title"><em>Fire Fighting</em> Spill Response.</h1>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <a href="#" class="btn btn_3 primary-btn">View Issues</a>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="center-y padding_2x">
+                            <h1 class="big title"><em>Fire Fighting</em> Spill Response.</h1>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <a href="#" class="btn btn_3 primary-btn">View Issues</a>
+                        </article>
+                    </li>
+                    <aside>
+                        <a href="#"></a>
+                        <a href="#"></a>
+                        <a href="#"></a>
+                    </aside>
+                </ul>
+            </section>
+            <a href="#services" class="cs-down "></a>
+        </div>
+    </header>
+
+
+
+    <div class="reco-right">
+        <h5>About Us</h5>
+        <h2>The Best Hydrogen Recovery</h2>
+        <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+            looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+            distribution of letters, as opposed to using 'Content here, content here',
+        </p>
+        <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+            looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+            distribution of letters, as opposed to using 'Content here, content here',
+        </p>
+
+        <a href="#">view more</a>
+    </div>
+
+    <div class="reco-right">
+        <h5>About Us</h5>
+        <h2>The Best Hydrogen Recovery</h2>
+        <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+            looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+            distribution of letters, as opposed to using 'Content here, content here',
+        </p>
+        <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+            looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+            distribution of letters, as opposed to using 'Content here, content here',
+        </p>
+
+        <a href="#">view more</a>
+    </div>
+
+
+    <script>
+        {
+            class SliderClip {
+                constructor(el) {
+                    this.el = el;
+                    this.Slides = Array.from(this.el.querySelectorAll('li'));
+                    this.Nav = Array.from(this.el.querySelectorAll('aside a'));
+                    this.totalSlides = this.Slides.length;
+                    this.current = 0;
+                    this.autoPlay = true; //true or false
+                    this.timeTrans = 9000; //transition time in milliseconds
+                    this.IndexElements = [];
+
+                    for (let i = 0; i < this.totalSlides; i++) {
+                        this.IndexElements.push(i);
+                    }
+
+                    this.setCurret();
+                    this.initEvents();
+                }
+                setCurret() {
+                    this.Slides[this.current].classList.add('current');
+                    this.Nav[this.current].classList.add('current_dot');
+                }
+                initEvents() {
+                    const self = this;
+
+                    this.Nav.forEach(dot => {
+                        dot.addEventListener('click', ele => {
+                            ele.preventDefault();
+                            this.changeSlide(this.Nav.indexOf(dot));
+                        });
+                    });
+
+                    this.el.addEventListener('mouseenter', () => self.autoPlay = false);
+                    this.el.addEventListener('mouseleave', () => self.autoPlay = true);
+
+                    setInterval(function () {
+                        if (self.autoPlay) {
+                            self.current = self.current < self.Slides.length - 1 ? self.current + 1 : 0;
+                            self.changeSlide(self.current);
+                        }
+                    }, this.timeTrans);
+
+                }
+                changeSlide(index) {
+
+                    this.Nav.forEach(allDot => allDot.classList.remove('current_dot'));
+
+                    this.Slides.forEach(allSlides => allSlides.classList.remove('prev', 'current'));
+
+                    const getAllPrev = value => value < index;
+
+                    const prevElements = this.IndexElements.filter(getAllPrev);
+
+                    prevElements.forEach(indexPrevEle => this.Slides[indexPrevEle].classList.add('prev'));
+
+                    this.Slides[index].classList.add('current');
+                    this.Nav[index].classList.add('current_dot');
+                }
+            }
+
+
+            const slider = new SliderClip(document.querySelector('.slider'));
+        }
+    </script>
+    <!-- https://codepen.io/Peter-Njenga/pen/YzdBEVO -->
+</body>
+
+</html>

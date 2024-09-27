@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/slendr@1.4.0-rc2/dist/slendr.min.css">
+    <script src="https://unpkg.com/slendr@1.4.0-rc2/dist/slendr.min.js"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Lora:400,400i,700");
+
+        body {
+            margin: 0;
+        }
+
+        .container {
+            position: relative;
+            height: 100vh;
+            font-family: Lora, serif;
+            color: white;
+        }
+
+        .container h1 {
+            margin: 0;
+            font-size: 250%;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-shadow: 0 2px 2px black;
+        }
+
+        .container h3 {
+            margin: 0;
+            letter-spacing: 0.2em;
+            text-shadow: 0 2px 2px black;
+        }
+
+        .container .page-title {
+            position: absolute;
+            left: 4em;
+            top: 2em;
+            z-index: 1;
+        }
+
+        .container .slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .container .slideshow .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+        }
+
+        .container .slideshow .slide:first-child {
+            z-index: 0;
+        }
+
+        .container .slideshow .slide:nth-child(1) {
+            background: url("https://i.loli.net/2019/11/23/cnKl1Ykd5rZCVwm.jpg") center/cover no-repeat;
+        }
+
+        .container .slideshow .slide:nth-child(2) {
+            background: url("https://i.loli.net/2019/10/18/uXF1Kx7lzELB6wf.jpg") center/cover no-repeat;
+        }
+
+        .container .slideshow .slide:nth-child(3) {
+            background: url("https://i.loli.net/2020/01/06/hJnwRiWvgCcXoAr.png") center/cover no-repeat;
+        }
+
+        .container .slideshow .slide:nth-child(4) {
+            background: url("https://i.loli.net/2019/11/03/RtVq2wxQYySDb8L.jpg") center/cover no-repeat;
+        }
+
+        .container .slideshow .slide:nth-child(5) {
+            background: url("https://i.loli.net/2020/01/06/OF6PzWyrwM31ldi.jpg") center/cover no-repeat;
+        }
+
+        .container .slideshow .slide .slide-title {
+            position: absolute;
+            top: 40vh;
+            left: 2em;
+        }
+
+        .container .bars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        .container .bars .bar {
+            flex: 1;
+            background: #111;
+            transform: scaleY(0);
+            transform-origin: top;
+        }
+
+        .container .nav-dots {
+            position: absolute;
+            left: 2em;
+            bottom: 4em;
+            z-index: 1;
+            display: flex;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .container .nav-dots .dot {
+            width: 1em;
+            height: 1em;
+            margin: 1em;
+        }
+
+        .container .nav-dots .dot a {
+            position: relative;
+            display: block;
+            height: 1em;
+            line-height: 1em;
+        }
+
+        .container .nav-dots .dot a::before {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+        }
+
+        .container .nav-dots .dot a:hover::before {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .container .nav-dots .dot a.active::before {
+            background: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+        <h3 class="page-title">Yozora</h3>
+        <section class="slideshow">
+            <div class="slide">
+                <h1 class="slide-title">Star</h1>
+            </div>
+            <div class="slide">
+                <h1 class="slide-title">Forest</h1>
+            </div>
+            <div class="slide">
+                <h1 class="slide-title">Light</h1>
+            </div>
+            <div class="slide">
+                <h1 class="slide-title">Gothic</h1>
+            </div>
+            <div class="slide">
+                <h1 class="slide-title">Cosmic</h1>
+            </div>
+        </section>
+        <section class="bars">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </section>
+        <ul class="nav-dots">
+            <li class="dot"><a href="#"></a></li>
+            <li class="dot"><a href="#"></a></li>
+            <li class="dot"><a href="#"></a></li>
+            <li class="dot"><a href="#"></a></li>
+            <li class="dot"><a href="#"></a></li>
+        </ul>
+    </main>
+    <div class="reco-right">
+        <h5>About Us</h5>
+        <h2>The Best Hydrogen Recovery</h2>
+        <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+            looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+            distribution of letters, as opposed to using 'Content here, content here',
+        </p>
+        <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+            looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+            distribution of letters, as opposed to using 'Content here, content here',
+        </p>
+
+        <a href="#">view more</a>
+    </div>
+
+    <script>
+
+        "use strict";
+        let slideshow = document.querySelector(".slideshow");
+        let slides = document.querySelectorAll(".slideshow .slide");
+        let bars = document.querySelectorAll(".bars .bar");
+        let dots = document.querySelectorAll(".nav-dots .dot a");
+        let slideTitles = document.querySelectorAll(".slide-title");
+        let easeInOutQuart = "cubic-bezier(0.77, 0, 0.175, 1)";
+        let easeOutCubic = "cubic-bezier(0.215, 0.61, 0.355, 1)";
+        let staggeredSlideIn = (element, delay) => {
+            return element.animate([
+                { transform: "scaleY(0)", transformOrigin: "top" },
+                { transform: "scaleY(1)", transformOrigin: "top" }
+            ], {
+                duration: 800,
+                easing: easeInOutQuart,
+                fill: "forwards",
+                delay: 80 * delay
+            });
+        };
+        let staggeredSlideOut = (element, delay) => {
+            return element.animate([
+                { transform: "scaleY(1)", transformOrigin: "top" },
+                { transformOrigin: "bottom", offset: 0.001 },
+                { transform: "scaleY(0)", transformOrigin: "bottom" }
+            ], {
+                duration: 800,
+                easing: easeInOutQuart,
+                fill: "forwards",
+                delay: 80 * delay
+            });
+        };
+        let fadeIn = (element) => {
+            return element.animate([
+                { opacity: 0, transform: "translateY(100%)" },
+                { opacity: 1, transform: "translateY(0)" }
+            ], {
+                duration: 800,
+                easing: easeOutCubic,
+                fill: "forwards",
+                delay: 350
+            });
+        };
+        let fadeOut = (element) => {
+            return element.animate([
+                { opacity: 1, transform: "translateY(0)" },
+                { opacity: 0, transform: "translateY(-100%)" }
+            ], {
+                duration: 600,
+                easing: easeOutCubic,
+                fill: "forwards"
+            });
+        };
+        let pageTransition = (activeIndex) => {
+            slideTitles.forEach(slideTitle => fadeOut(slideTitle));
+            Promise.all(Array.from(bars).map((bar, i) => staggeredSlideIn(bar, i).finished)).then(() => {
+                setActiveIndex(activeIndex);
+                bars.forEach((bar, i) => {
+                    staggeredSlideOut(bar, i);
+                });
+                slideTitles.forEach(slideTitle => fadeIn(slideTitle));
+            });
+        };
+        let setActiveIndex = (activeIndex) => {
+            dots.forEach(dot => dot.classList.remove("active"));
+            dots[activeIndex].classList.add("active");
+            slideshow.style.setProperty("--active-index", `${activeIndex}`);
+            slides.forEach(slide => (slide.style.zIndex = `-1`));
+            slides[activeIndex].style.zIndex = `0`;
+        };
+        // dots
+        dots[0].classList.add("active");
+        dots.forEach((dot, activeIndex) => {
+            dot.addEventListener("click", () => {
+                let currentActiveIndex = slideshow.style.getPropertyValue("--active-index");
+                if (Number(currentActiveIndex) !== activeIndex) {
+                    pageTransition(activeIndex);
+                }
+            });
+        });
+
+    </script>
+
+<!-- https://codepen.io/alphardex/pen/KKwZwqr -->
+
+</body>
+
+</html>

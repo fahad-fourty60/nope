@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1390px;
+            overflow: hidden;
+            margin: auto;
+            padding: 80px 20px;
+        }
+
+        .h-bg {
+            border-top: 5px solid black;
+        }
+
+        .home-sec {
+            /* width: 100%; */
+            /* padding-top: 300px; */
+            overflow: visible;
+            /* height: 900px; */
+            position: relative;
+            overflow: visible;
+            padding-bottom: 0px;
+            margin-bottom: -17px;
+            /* width: 100vh; */
+        }
+
+        .home-sec .box-all {
+            position: relative;
+            bottom: 0px;
+            padding-top: 770px;
+            width: 100vh;
+        }
+
+        .home-sec .box-all .htop-box {
+            text-align: center;
+        }
+
+
+
+        .home-sec .ht-box1 {
+            background-image: url(s2.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            width: 603px;
+            height: 473px;
+            position: absolute;
+            z-index: 1;
+            bottom: 55px;
+            left: 127px;
+        }
+
+        .home-sec p {
+            text-align: center;
+        }
+
+        .home-sec .ht-box2 {
+            background-image: url(s1.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            width: 559px;
+            height: 290px;
+            position: absolute;
+            bottom: 0;
+            left: 70px;
+        }
+
+        .home-sec .ht-box3 {
+            background-image: url(s3.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            width: 587px;
+            height: 555px;
+            position: absolute;
+            bottom: 123px;
+            left: 270px;
+        }
+
+        .home-sec .ht-box4 {
+            background-image: url(s4.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            width: 490px;
+            height: 551px;
+            position: absolute;
+            bottom: 156px;
+            left: 487px;
+            transform: rotate(4deg);
+        }
+
+        .home-sec .ht-box5 {
+            background-image: url(s5.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            width: 366px;
+            height: 567px;
+            position: absolute;
+            bottom: 72px;
+            left: 705px;
+            transform: rotate(7deg);
+        }
+
+        .home-sec .ht-box6 {
+            background-image: url(s6.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            width: 559px;
+            height: 630px;
+            position: absolute;
+            bottom: -87px;
+            /* right: 76px; */
+            left: 714px;
+            transform: rotate(14deg);
+        }
+
+        .home-sec .ht-box7 {
+            background-image: url(s7.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            width: 652px;
+            height: 546px;
+            position: absolute;
+            bottom: -217px;
+            /* right: -15px; */
+            left: 723px;
+            transform: rotate(10deg);
+        }
+
+        /* .home-sec .box-all .ht-box {
+            transform: rotate(90deg);
+        } */
+        .home-sec .hbottom-box {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .home-sec .hb-bottom {
+            /* position: relative; */
+            z-index: 2;
+            width: 100%;
+            text-align: center;
+        }
+
+        .home-sec .hb-bottom img {
+            position: absolute;
+
+            bottom: 18px;
+            left: 458px;
+        }
+
+        .home-sec .hb-bottom p {
+            font-family: Inter;
+            font-size: 34px;
+            font-weight: 500;
+            line-height: 41px;
+            letter-spacing: 0em;
+            text-align: center;
+            color: #000000;
+            width: 250px;
+            position: absolute;
+            bottom: 37px;
+            left: 564px;
+        }
+
+
+        .fadeInUp1 {
+            animation: fadeInUp 1s ease backwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translate(0px, 100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translate(0px, 0);
+                opacity: 1;
+            }
+        }
+
+        .fadeInUp2 {
+            animation: fadeInUp 1s ease backwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translate(0px, 100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translate(0px, 0);
+                opacity: 1;
+            }
+        }
+
+        .fadeInUp3 {
+            animation: fadeInUp 1s ease backwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translate(0px, 100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translate(0px, 0);
+                opacity: 1;
+            }
+        }
+
+        .fadeInUp4 {
+            animation: fadeInUp 1s ease backwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translate(0px, 100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translate(0px, 0);
+                opacity: 1;
+            }
+        }
+
+        .fadeInUp5 {
+            animation: fadeInUp 1s ease backwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translate(0px, 100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translate(0px, 0);
+                opacity: 1;
+            }
+        }
+
+        .fadeInUp6 {
+            animation: fadeInUp 1s ease backwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translate(0px, 100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translate(0px, 0);
+                opacity: 1;
+            }
+        }
+
+        .fadeInUp7 {
+            animation: fadeInUp 1s ease backwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translate(0px, 100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translate(0px, 0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    
+    <div class="home-sec">
+        <div class="box-all">
+            <div class="htop-box">
+
+                <div class="ht-box3 box fadeInUp3" style="animation-delay:1.5s;">
+                </div>
+
+                <div class="ht-box4 box fadeInUp4" style="animation-delay:2s;">
+                </div>
+
+                <div class="ht-box5 box fadeInUp5" style="animation-delay:2.5s;">
+                </div>
+
+            </div>
+
+            <div class="hbottom-box">
+
+                <div class="hb-left">
+                    <div class="ht-box1 box fadeInUp1" style="animation-delay:1s;">
+                    </div>
+
+                    <div class="ht-box2 box fadeInUp2" style="animation-delay:.5s;">
+                    </div>
+
+                </div>
+
+                <div class="hb-last">
+                    <div class="ht-box6 box fadeInUp6" style="animation-delay:3s;">
+                    </div>
+
+                    <div class="ht-box7 box fadeInUp7" style="animation-delay:3.5s;">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="hb-bottom">
+                <img src="hsun2.png" alt="">
+                <p>Are Facing any of <br> above problem in <br> Investing</p>
+            </div>
+
+        </div>
+    </div>
+
+    <section class="h-bg">
+    </section>
+
+    <div class="reco-right container">
+        <h5>About Us</h5>
+        <h2>The Best Hydrogen Recovery</h2>
+        <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+            looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+            distribution of letters, as opposed to using 'Content here, content here',
+        </p>
+        <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+            looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+            distribution of letters, as opposed to using 'Content here, content here',
+        </p>
+
+        <a href="#">view more</a>
+    </div>
+
+    <script>
+        AOS.init();
+    </script>
+    
+    <!-- https://codepen.io/ramansharma/pen/BLzNZB -->
+
+    <!-- https://codepen.io/Shokeen/pen/prNzpN -->
+
+</body>
+
+</html>

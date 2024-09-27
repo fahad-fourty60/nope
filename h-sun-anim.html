@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+    <style>
+        /* // ********* Slide Animation ************ */
+        section{
+            padding-top: 100px;
+        }
+        .slide-enter {
+            opacity: 0;
+        }
+
+        .slide-enter-active {
+            animation: slide-in 1s ease-in forwards;
+            transition: opacity .5s;
+        }
+
+        .slide-leave {
+            /* // initial state set in keyframe */
+        }
+
+        .slide-leave-active {
+            animation: slide-out 1s ease-out forwards;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+
+        @keyframes slide-in {
+            from {
+                transform: translateY(20px);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slide-out {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(20px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <section>
+                <transition name="slide" appear>
+                    <div class="alert alert-info" v-if="toggleA">Slide in Animation</div>
+                </transition>
+  
+            </section>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                toggleA: true
+            },
+        });
+
+
+    </script>
+    <!-- https://codepen.io/marnitz/pen/RqLBQQ -->
+</body>
+
+</html>

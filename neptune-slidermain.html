@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+    <style>
+        /* body {
+            font: 14px/2 "Open sans", sans-serif;
+            letter-spacing: 0.05em;
+        } */
+        @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Nunito", sans-serif;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0px auto;
+            padding: 80px 40px;
+            overflow: hidden;
+        }
+
+        :root {
+            --primary-color: #303192;
+            --secondary-color: ;
+            --body-para-color: #1e1e1e;
+            --accent-para-color: #3a3838;
+        }
+
+        /* utlities start */
+
+        h1 {
+            font-size: 48px;
+            line-height: 64px;
+            font-weight: 700;
+            color: #000000;
+            text-transform: capitalize;
+        }
+
+        h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            font-weight: 600;
+            line-height: 49px;
+            padding-bottom: 8px;
+            text-transform: capitalize;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 30px;
+            line-height: 40px;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        p {
+            font-size: 16px;
+            color: var(--body-para-color);
+            line-height: 24px;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+        }
+
+        a {
+            font-weight: 400;
+            font-size: 16px;
+            text-decoration: none !important;
+            color: #303192;
+        }
+
+        .home-slider .btn {
+            display: inline-block;
+            padding: 13px 20px;
+            color: #fff;
+            text-decoration: none;
+            position: relative;
+            background: transparent;
+            border: 1px solid #e1e1e1;
+            font: 12px/1.2 "Oswald", sans-serif;
+            letter-spacing: 0.4em;
+            text-align: left;
+            text-indent: 2px;
+            text-transform: uppercase;
+            transition: color 0.1s linear 0.05s;
+        }
+
+        .home-slider .btn::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #e1e1e1;
+            z-index: 1;
+            opacity: 0;
+            transition: height 0.2s ease, top 0.2s ease, opacity 0s linear 0.2s;
+        }
+
+        .home-slider .btn::after {
+            transition: border 0.1s linear 0.05s;
+        }
+
+        .home-slider .btn .btn-inner {
+            position: relative;
+            z-index: 2;
+        }
+
+        .home-slider .btn:hover {
+            color: #373737;
+            transition: color 0.1s linear 0s;
+        }
+
+        .home-slider .btn:hover::before {
+            top: 0;
+            height: 100%;
+            /* height: 900px; */
+            opacity: 1;
+            transition: height 0.2s ease, top 0.2s ease, opacity 0s linear 0s;
+        }
+
+        .home-slider .btn:hover::after {
+            border-color: #373737;
+            transition: border 0.1s linear 0s;
+        }
+
+        .home-slider .slideshow {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            /* height: 900px; */
+            z-index: 1;
+        }
+
+        .home-slider .slideshow .slideshow-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* height: 900px; */
+        }
+
+        .home-slider .slideshow .slides {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* height: 900px; */
+            z-index: 1;
+        }
+
+        .home-slider .slideshow .slide {
+            display: none;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* height: 900px; */
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .home-slider .slideshow .slide.is-active {
+            display: block;
+        }
+
+        .home-slider .slideshow .slide.is-loaded {
+            opacity: 1;
+        }
+
+        .home-slider .slideshow .slide .caption {
+            /* padding: 0 100px; */
+            width: 50%;
+            margin: 0px auto 0px 0px;
+            padding: 0;
+        }
+
+        .home-slider .slideshow .slide .image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* height: 900px; */
+            background-position: center;
+            z-index: 1;
+            background-size: cover;
+            image-rendering: optimizeQuality;
+        }
+
+        .home-slider .slideshow .slide .image-container::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* height: 900px; */
+            /* background: rgba(0, 0, 0, 0.5); */
+        }
+
+        .home-slider .slideshow .slide .image {
+            width: 100%;
+            width: 100%;
+            object-fit: cover;
+            height: 100%;
+            /* height: 900px; */
+        }
+
+        .home-slider .slideshow .slide-content {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 70%;
+            height: 100%;
+            max-width: 1400px;
+            margin: auto;
+            /* height: 900px; */
+            z-index: 2;
+            color: #fff;
+            text-align: left;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .home-slider .slideshow .slide-content h1 {
+            text-align: left;
+            color: var(--primary-color);
+        }
+
+        .home-slider .slideshow .slide-content h2 {
+            text-align: left;
+            color: var(--primary-color);
+            font-size: 48px;
+            line-height: 64px;
+            font-weight: 700;
+            text-transform: capitalize;
+        }
+
+        .home-slider .slideshow .slide .title {
+            margin: 0 0 15px;
+            text-transform: uppercase;
+        }
+
+        .home-slider .slideshow .slide .text {
+            font-size: 18px;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        .home-slider .slideshow .slide .btn {
+            margin: 15px 0 0;
+            border-color: #fff;
+        }
+
+        .home-slider .slideshow .slide .btn::before {
+            background: #fff;
+        }
+
+        .home-slider .slideshow .pagination {
+            position: absolute;
+            bottom: 35px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            cursor: default;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .home-slider .slideshow .pagination .item {
+            display: inline-block;
+            padding: 15px 5px;
+            position: relative;
+            width: 46px;
+            height: 32px;
+            cursor: pointer;
+            text-indent: -999em;
+            z-index: 1;
+        }
+
+        .home-slider .slideshow .pagination .item+.page {
+            margin-left: -2px;
+        }
+
+        .home-slider .slideshow .pagination .item::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 15px;
+            left: 5px;
+            width: 36px;
+            height: 5px;
+            background: var(--primary-color);
+            transition: background 0.2s ease;
+        }
+
+        .home-slider .slideshow .pagination .item::after {
+            width: 0;
+            background: #303192;
+            z-index: 2;
+            transition: width 0.2s ease;
+        }
+
+        .home-slider .slideshow .pagination .item:hover::before,
+        .slideshow .pagination .item.is-active::before {
+            background-color: #000;
+        }
+
+        .home-slider .slideshow .arrows .arrow {
+            margin: -33px 0 0;
+            padding: 20px;
+            position: absolute;
+            top: 50%;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        .home-slider .slideshow .arrows .prev {
+            left: 30px;
+        }
+
+        .home-slider .slideshow .arrows .prev:hover .svg {
+            left: -10px;
+        }
+
+        .home-slider .slideshow .arrows .next {
+            right: 30px;
+        }
+
+        .home-slider .slideshow .arrows .next:hover .svg {
+            left: 10px;
+        }
+
+        .home-slider .slideshow .arrows .svg {
+            position: relative;
+            left: 0;
+            width: 14px;
+            height: 26px;
+            fill: #fff;
+            transition: left 0.2s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="main-content home-slider">
+        <section class="slideshow">
+            <div class="slideshow-inner">
+
+                <div class="slides">
+                    <div class="slide is-active ">
+                        <div class="slide-content ">
+                            <div class="caption container">
+                                <div class="title">
+                                    <h1>Inconel X750 Round Bar Supplier - Neptune Alloys </h1>
+                                </div>
+                                <div class="text">
+                                    <p>Trusted Source for Round Bars Exporter in India</p>
+                                </div>
+                                <a href="inconel-x750-round-bar.php" class="btn">
+                                    <span class="btn-inner">Learn More</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="image-container">
+                            <img src="inconel-x750-spring-wire-manufacturers.png" alt="" class="image" />
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-content">
+                            <div class="caption container">
+                                <div class="title">
+                                    <h2>Sheet & Plate Supplier in Mumbai, India </h2>
+                                </div>
+                                <div class="text">
+                                    <p>Trusted Source for Sheet & Plate Exporter in India</p>
+                                </div>
+                                <a href="sheets-plates.php" class="btn">
+                                    <span class="btn-inner">Learn More</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="image-container">
+                            <img src="inconel-x750-spring-wire-manufacturers.png" alt="" class="image" />
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-content">
+                            <div class="caption container">
+                                <div class="title">
+                                    <h2>Inconel X750 Spring Wire Supplier in Maharashtra, India.</h2>
+                                </div>
+                                <div class="text">
+                                    <p>Trusted Source for Inconel X750 Spring Wire Exporter in India</p>
+                                </div>
+                                <a href="inconel-x750-sheet.php" class="btn">
+                                    <span class="btn-inner">Learn More</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="image-container">
+                            <img src="inconel-x750-spring-wire-manufacturers.png" alt="" class="image" />
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="pagination">
+                    <div class="item is-active">
+                        <span class="icon">1</span>
+                    </div>
+                    <div class="item">
+                        <span class="icon">2</span>
+                    </div>
+                    <div class="item">
+                        <span class="icon">3</span>
+                    </div>
+              
+                </div>
+                <div class="arrows">
+                    <div class="arrow prev">
+                        <span class="svg svg-arrow-left">
+                            <svg version="1.1" id="svg4-Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14px" height="26px"
+                                viewBox="0 0 14 26" enable-background="new 0 0 14 26" xml:space="preserve">
+                                <path
+                                    d="M13,26c-0.256,0-0.512-0.098-0.707-0.293l-12-12c-0.391-0.391-0.391-1.023,0-1.414l12-12c0.391-0.391,1.023-0.391,1.414,0s0.391,1.023,0,1.414L2.414,13l11.293,11.293c0.391,0.391,0.391,1.023,0,1.414C13.512,25.902,13.256,26,13,26z" />
+                            </svg>
+                            <span class="alt sr-only"></span>
+                        </span>
+                    </div>
+                    <div class="arrow next">
+                        <span class="svg svg-arrow-right">
+                            <svg version="1.1" id="svg5-Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14px" height="26px"
+                                viewBox="0 0 14 26" enable-background="new 0 0 14 26" xml:space="preserve">
+                                <path
+                                    d="M1,0c0.256,0,0.512,0.098,0.707,0.293l12,12c0.391,0.391,0.391,1.023,0,1.414l-12,12c-0.391,0.391-1.023,0.391-1.414,0s-0.391-1.023,0-1.414L11.586,13L0.293,1.707c-0.391-0.391-0.391-1.023,0-1.414C0.488,0.098,0.744,0,1,0z" />
+                            </svg>
+                            <span class="alt sr-only"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <div class="reco-right">
+        <h5>About Us</h5>
+        <h2>The Best Hydrogen Recovery</h2>
+        <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+            looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+            distribution of letters, as opposed to using 'Content here, content here',
+        </p>
+        <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+            looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+            distribution of letters, as opposed to using 'Content here, content here',
+        </p>
+
+        <a href="#">view more</a>
+    </div>
+
+
+    <script>
+        var slideshowDuration = 8000;
+        var slideshow = $('.main-content .slideshow');
+
+        function slideshowSwitch(slideshow, index, auto) {
+            if (slideshow.data('wait')) return;
+
+            var slides = slideshow.find('.slide');
+            var pages = slideshow.find('.pagination');
+            var activeSlide = slides.filter('.is-active');
+            var activeSlideImage = activeSlide.find('.image-container');
+            var newSlide = slides.eq(index);
+            var newSlideImage = newSlide.find('.image-container');
+            var newSlideContent = newSlide.find('.slide-content');
+            var newSlideElements = newSlide.find('.caption > *');
+            if (newSlide.is(activeSlide)) return;
+
+            newSlide.addClass('is-new');
+            var timeout = slideshow.data('timeout');
+            clearTimeout(timeout);
+            slideshow.data('wait', true);
+            var transition = slideshow.attr('data-transition');
+            if (transition == 'fade') {
+                newSlide.css({
+                    display: 'block',
+                    zIndex: 2
+                });
+                newSlideImage.css({
+                    opacity: 0
+                });
+
+                TweenMax.to(newSlideImage, 1, {
+                    alpha: 1,
+                    onComplete: function () {
+                        newSlide.addClass('is-active').removeClass('is-new');
+                        activeSlide.removeClass('is-active');
+                        newSlide.css({ display: '', zIndex: '' });
+                        newSlideImage.css({ opacity: '' });
+                        slideshow.find('.pagination').trigger('check');
+                        slideshow.data('wait', false);
+                        // if (auto) {
+                        //     timeout = setTimeout(function () {
+                        //         slideshowNext(slideshow, false, true);
+                        //     }, slideshowDuration);
+                        //     slideshow.data('timeout', timeout);
+                        // }
+                    }
+                });
+            } else {
+                if (newSlide.index() > activeSlide.index()) {
+                    var newSlideRight = 0;
+                    var newSlideLeft = 'auto';
+                    var newSlideImageRight = -slideshow.width() / 8;
+                    var newSlideImageLeft = 'auto';
+                    var newSlideImageToRight = 0;
+                    var newSlideImageToLeft = 'auto';
+                    var newSlideContentLeft = 'auto';
+                    var newSlideContentRight = 0;
+                    var activeSlideImageLeft = -slideshow.width() / 8;
+                } else {
+                    var newSlideRight = '';
+                    var newSlideLeft = 0;
+                    var newSlideImageRight = 'auto';
+                    var newSlideImageLeft = -slideshow.width() / 8;
+                    var newSlideImageToRight = '';
+                    var newSlideImageToLeft = 0;
+                    var newSlideContentLeft = 0;
+                    var newSlideContentRight = 'auto';
+                    var activeSlideImageLeft = slideshow.width() / 8;
+                }
+
+                newSlide.css({
+                    display: 'block',
+                    width: 0,
+                    right: newSlideRight,
+                    left: newSlideLeft
+                    , zIndex: 2
+                });
+
+                newSlideImage.css({
+                    width: slideshow.width(),
+                    right: newSlideImageRight,
+                    left: newSlideImageLeft
+                });
+
+
+                newSlideContent.css({
+                    width: slideshow.width(),
+                    left: newSlideContentLeft,
+                    right: newSlideContentRight
+                });
+
+                activeSlideImage.css({
+                    left: 0
+                });
+
+                TweenMax.set(newSlideElements, { y: 20, force3D: true });
+                TweenMax.to(activeSlideImage, 1, {
+                    left: activeSlideImageLeft,
+                    ease: Power3.easeInOut
+                });
+
+                TweenMax.to(newSlide, 1, {
+                    width: slideshow.width(),
+                    ease: Power3.easeInOut
+                });
+
+                TweenMax.to(newSlideImage, 1, {
+                    right: newSlideImageToRight,
+                    left: newSlideImageToLeft,
+                    ease: Power3.easeInOut
+                });
+
+                TweenMax.staggerFromTo(newSlideElements, 0.8, { alpha: 0, y: 60 }, { alpha: 1, y: 0, ease: Power3.easeOut, force3D: true, delay: 0.0 }, 0.1, function () {
+                    newSlide.addClass('is-active').removeClass('is-new');
+                    activeSlide.removeClass('is-active');
+                    newSlide.css({
+                        display: '',
+                        width: '',
+                        left: '',
+                        zIndex: ''
+                    });
+
+                    newSlideImage.css({
+                        width: '',
+                        right: '',
+                        left: ''
+                    });
+
+                    newSlideContent.css({
+                        width: '',
+                        left: ''
+                    });
+
+                    newSlideElements.css({
+                        opacity: '',
+                        transform: ''
+                    });
+
+                    activeSlideImage.css({
+                        left: ''
+                    });
+
+                    slideshow.find('.pagination').trigger('check');
+                    slideshow.data('wait', false);
+                    if (auto) {
+                        timeout = setTimeout(function () {
+                            slideshowNext(slideshow, false, true);
+                        }, slideshowDuration);
+                        slideshow.data('timeout', timeout);
+                    }
+                });
+            }
+        }
+
+        function slideshowNext(slideshow, previous, auto) {
+            var slides = slideshow.find('.slide');
+            var activeSlide = slides.filter('.is-active');
+            var newSlide = null;
+            if (previous) {
+                newSlide = activeSlide.prev('.slide');
+                if (newSlide.length === 0) {
+                    newSlide = slides.last();
+                }
+            } else {
+                newSlide = activeSlide.next('.slide');
+                if (newSlide.length == 0)
+                    newSlide = slides.filter('.slide').first();
+            }
+
+            slideshowSwitch(slideshow, newSlide.index(), auto);
+        }
+
+        function homeSlideshowParallax() {
+            var scrollTop = $(window).scrollTop();
+            if (scrollTop > windowHeight) return;
+            var inner = slideshow.find('.slideshow-inner');
+            var newHeight = windowHeight - (scrollTop / 2);
+            var newTop = scrollTop * 0.8;
+
+            inner.css({
+                transform: 'translateY(' + newTop + 'px)', height: newHeight
+            });
+        }
+
+        $(document).ready(function () {
+            $('.slide').addClass('is-loaded');
+
+            $('.slideshow .arrows .arrow').on('click', function () {
+                slideshowNext($(this).closest('.slideshow'), $(this).hasClass('prev'));
+            });
+
+            $('.slideshow .pagination .item').on('click', function () {
+                slideshowSwitch($(this).closest('.slideshow'), $(this).index());
+            });
+
+            $('.slideshow .pagination').on('check', function () {
+                var slideshow = $(this).closest('.slideshow');
+                var pages = $(this).find('.item');
+                var index = slideshow.find('.slides .is-active').index();
+                pages.removeClass('is-active');
+                pages.eq(index).addClass('is-active');
+            });
+
+            /* Lazyloading
+            $('.slideshow').each(function(){
+              var slideshow=$(this);
+              var images=slideshow.find('.image').not('.is-loaded');
+              images.on('loaded',function(){
+                var image=$(this);
+                var slide=image.closest('.slide');
+                slide.addClass('is-loaded');
+              });
+            */
+
+            var timeout = setTimeout(function () {
+                slideshowNext(slideshow, false, true);
+            }, slideshowDuration);
+
+            slideshow.data('timeout', timeout);
+        });
+
+        if ($('.main-content .slideshow').length > 1) {
+            $(window).on('scroll', homeSlideshowParallax);
+        }
+
+
+    </script>
+    <!-- https://codepen.io/bcarvalho/pen/gWPvJB -->
+</body>
+
+</html>
